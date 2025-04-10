@@ -6,7 +6,8 @@ import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import React from "react";
 
 interface Navbarprops {
-    onAddApp: (id: string, name: string, color: string) => void
+    onAddApp: (id: string, name: string, color: string) => void;
+    onRemoveApp: (id: string) => void;
 }
 
 const arrayApps = [
@@ -17,7 +18,7 @@ const arrayApps = [
     { id: "5", name: "Spark", count: 0, color: "#8bc34a" },
   ]
 
-const NavBar: React.FC<Navbarprops> = ({ onAddApp }) => {
+const NavBar: React.FC<Navbarprops> = ({ onAddApp, onRemoveApp }) => {
 
     const IconWrapper = styled.div(() => ({
         display: "flex",
@@ -89,7 +90,10 @@ const NavBar: React.FC<Navbarprops> = ({ onAddApp }) => {
                         <span style={{ display: "flex", marginRight: "1em" }}>{arrayApp.name}</span>
                         <span style={{ display: "flex", marginRight: "1em" }}>{arrayApp.count}</span>
                         <div style={{ display: "flex", gap: "0.9em" }}>
-                        <RemoveCircleOutlineIcon style={{ color: "#aaa", cursor: "pointer" }} />
+                        <RemoveCircleOutlineIcon 
+                            style={{ color: "#aaa", cursor: "pointer" }} 
+                            onClick={() => onRemoveApp(arrayApp.id)}
+                        />
                         <AddCircleIcon 
                             style={{ color: arrayApp.color, cursor: "pointer" }}
                             onClick={() => onAddApp(arrayApp.id, arrayApp.name, arrayApp.color)}    
