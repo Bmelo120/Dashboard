@@ -24,9 +24,14 @@ function App() {
     setApps((oldApps) => [...oldApps, newApp]);
   };
 
+  const handleRemoveApp = (id: string) => {
+    setApps((oldApps) => oldApps.filter(app => app.id !== id));
+  };
+  
+
   return (
         <>
-          <NavBar onAddApp={handleAddApp}/>
+          <NavBar onRemoveApp={handleRemoveApp} onAddApp={handleAddApp}/>
           <Dashboard pad={apps}/>
         </>
   )
