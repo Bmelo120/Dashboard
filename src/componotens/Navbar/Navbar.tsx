@@ -4,21 +4,28 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import React from "react";
+import { ClusterApp } from "../../App";
 
+
+//funções que serão chamadas por interação
 interface Navbarprops {
     onAddApp: (id: string, name: string, color: string) => void;
     onRemoveApp: (id: string) => void;
+    onAddServer: () => void;
+    apps: ClusterApp[];
+    newServer: number[];
 }
 
+//Lista fix de aplicativos 
 const arrayApps = [
-    { id: "1", name: "Hadoop", count: 0, color: "#f50057" },
-    { id: "2", name: "Rails", count: 0, color: "#3f51b5" },
-    { id: "3", name: "Chronos", count: 0, color: "#00bcd4" },
-    { id: "4", name: "Storm", count: 0, color: "#4caf50" },
-    { id: "5", name: "Spark", count: 0, color: "#8bc34a" },
+    { id: "1", name: "Hadoop", color: "#f50057" },
+    { id: "2", name: "Rails", color: "#3f51b5" },
+    { id: "3", name: "Chronos", color: "#00bcd4" },
+    { id: "4", name: "Storm", color: "#4caf50" },
+    { id: "5", name: "Spark", color: "#8bc34a" },
   ]
 
-const NavBar: React.FC<Navbarprops> = ({ onAddApp, onRemoveApp }) => {
+const NavBar: React.FC<Navbarprops> = ({ onAddApp, onRemoveApp, onAddServer ,apps }) => {
 
     const IconWrapper = styled.div(() => ({
         display: "flex",
@@ -45,7 +52,6 @@ const NavBar: React.FC<Navbarprops> = ({ onAddApp, onRemoveApp }) => {
         display: "flex",
         flexDirection: "column",
         marginTop: "4em",
-        paddingLeft: "2em",
     }))
 
     const SubTitle = styled("div")(() => ({
@@ -67,13 +73,21 @@ const NavBar: React.FC<Navbarprops> = ({ onAddApp, onRemoveApp }) => {
     color: #fff;
   `;
 
+    //Faz a contagem dos clusters 
+    const countCluste = (id: string) => {
+        return apps.filter((app)=> app.id === id).length;
+    }
+
     return(
         <Container>
             <Grid container spacing={2} columns={8} alignItems="center">
                 <Grid size={4}>
                     <IconWrapper>
                         <AddCircleOutlineIcon />
-                        <MenuItem> Novo Servidor </MenuItem>
+                        <MenuItem 
+                            style={{ marginLeft: "1em"}}
+                            onClick={onAddServer}    
+                        > Novo Servidor </MenuItem>
                     </IconWrapper>
                 </Grid>
                 <Grid size={4}>
@@ -85,18 +99,26 @@ const NavBar: React.FC<Navbarprops> = ({ onAddApp, onRemoveApp }) => {
             </Grid>
             <AppContent>
                 <SubTitle> Apps Disponíveis </SubTitle>
-                {arrayApps.map((arrayApp) => (
+                {/* //iterando a lista arraypp  */}
+                {arrayApps.map((arrayApp) => ( 
                     <ItemBlock key={arrayApp.name} borderColor={arrayApp.color}>
                         <span style={{ display: "flex", marginRight: "1em" }}>{arrayApp.name}</span>
-                        <span style={{ display: "flex", marginRight: "1em" }}>{arrayApp.count}</span>
-                        <div style={{ display: "flex", gap: "0.9em" }}>
+                        <span style={{ display: "flex", marginRight: "1em" }}>{countCluste(arrayApp.id)}</span>
+                        <div style={{ display: "flex", gap: "0.3em" }}>
+                        {/* //botões de adicionar e remover que comunica com o comonente pai atravez das funções passadas */}
                         <RemoveCircleOutlineIcon 
                             style={{ color: "#aaa", cursor: "pointer" }} 
-                            onClick={() => onRemoveApp(arrayApp.id)}
+                            onClick={() => onRemoveApp(arrayApp.id)} 
                         />
                         <AddCircleIcon 
                             style={{ color: arrayApp.color, cursor: "pointer" }}
-                            onClick={() => onAddApp(arrayApp.id, arrayApp.name, arrayApp.color)}    
+                            onClick={() => {
+                            if (countCluste(arrayApp.id) >= 2) {
+                                alert("Você só pode adicionar no máximo 2 instâncias por aplicativo");
+                                return;
+                            }
+                            onAddApp(arrayApp.id, arrayApp.name, arrayApp.color)
+                        }}    
                         />
                         </div>
                     </ItemBlock>

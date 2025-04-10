@@ -41,7 +41,8 @@ const Dashboard: React.FC<DashboardProps> = ({ pad }) => {
           <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 2, sm: 2, md: 12 }}>
             {Array.from(Array(6)).map((_, index) => (
               <Grid key={index} size={{ xs: 2, sm: 4, md: 4 }}>
-                  {pad[index] ? ( // verifica se existe um app
+                  {/* // verifica se existe um app */}
+                  {pad[index] ? ( 
                 <Blocks style={{ borderTop: `4px solid ${pad[index].color}` }}>
                   <strong style={{ color: "#ffff", display: "flex", padding: "2em", justifyContent:"center" }}>{pad[index].name}</strong>
                   <span style={{ color: "black", display: "flex", padding: "1em", justifyContent: "center", fontSize: "12px"  }}>{formatTime(pad[index].createdAt)}</span>
