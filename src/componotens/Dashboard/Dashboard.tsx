@@ -4,9 +4,10 @@ import { ClusterApp } from '../../App'
 
 interface DashboardProps{
   pad: ClusterApp[];
+  addServers: number[];
 }
 
-const Dashboard: React.FC<DashboardProps> = ({ pad }) => {
+const Dashboard: React.FC<DashboardProps> = ({ pad, addServers}) => {
 
     const StyleBody = styled("body")(() => ({
         width: "calc(100% - 360px)",
@@ -39,19 +40,19 @@ const Dashboard: React.FC<DashboardProps> = ({ pad }) => {
         <Title> Quadro de servidores </Title>
         <Box sx={{ flexGrow: 1}}>
           <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 2, sm: 2, md: 12 }}>
-            {Array.from(Array(6)).map((_, index) => (
+            {pad.map((server, index) => (
               <Grid key={index} size={{ xs: 2, sm: 4, md: 4 }}>
-                  {/* // verifica se existe um app */}
-                  {pad[index] ? ( 
-                <Blocks style={{ borderTop: `4px solid ${pad[index].color}` }}>
-                  <strong style={{ color: "#ffff", display: "flex", padding: "2em", justifyContent:"center" }}>{pad[index].name}</strong>
-                  <span style={{ color: "black", display: "flex", padding: "1em", justifyContent: "center", fontSize: "12px"  }}>{formatTime(pad[index].createdAt)}</span>
+                <Blocks style={{ borderTop: `4px solid ${server.color}` }}>
+                  <strong style={{ color: "#ffff", display: "flex", padding: "2em", justifyContent:"center" }}>{server.name}</strong>
+                  <span style={{ color: "black", display: "flex", padding: "1em", justifyContent: "center", fontSize: "12px"  }}>{formatTime(server.createdAt)}</span>
                 </Blocks>
-              ) : (
-                <Blocks style={{ opacity: 0.2 }} />
-              )}
               </Grid>
-            ))}
+              ))}
+                {addServers.map((_, index) => (
+                  <Grid key={`empty-${index}`} spacing={{xs: 2, sm: 4 ,md: 4}}>
+                    <Blocks style={{ opacity: 0.2 }} />
+                  </Grid>
+                ))}
           </Grid>
         </Box>
       </StyleBody>

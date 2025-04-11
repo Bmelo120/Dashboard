@@ -14,19 +14,39 @@ export interface ClusterApp {
 function App() {
   //controla o estado do bloco sem cluster
   const [ apps, setApps ] = useState<ClusterApp[]>([]);
-  //controla o estado d bloco vazio
-  const [addServers, setAddServers] = useState<number[]>([]);
 
-  //Cria um novo cluster no bloco e adiciona a lista. 
+  //controla o estado do bloco vazio
+  const [addServers, setAddServers] = useState<(number[])>([
+  Date.now(),
+  Date.now() + 1,
+  Date.now() + 2,
+  Date.now() + 3,
+  ]);
+
+  //Cria um novo cluster dentro do  bloco . 
   const handleAddApp = (id: string, name: string, color: string) => {
+    
+    //verifica se tem um servidor disponivel
+    if (addServers.length === 0) {
+      alert("Não há servidores vazios disponíveis!");
+      return;
+    }
+    
+    // Cria um obj novo
     const newApp: ClusterApp = {
       id,
       name,
       color,
-      createdAt: new Date() // Gera uma nova data assim que um bloco novo é adicionado
+      createdAt: new Date(), // Gera uma nova data assim que um bloco novo é adicionado 
     }
 
-    setApps((oldApps) => [...oldApps, newApp]);
+       //remove o vazio
+       const updated = [...addServers];
+       updated.splice(0, 1);
+        setAddServers(updated);
+
+       //adiciona um novo app 
+       setApps([...apps, newApp])
   };
 
   //Remove um cluster com o id informado na lista (ou seja de acordo com o app selecionado)
@@ -39,17 +59,17 @@ function App() {
     }
   };
 
-  //Adiciona um blooco
-  const handleNewServer = () => {
-    setAddServers(add => [...add, Date.now()])
-  }
+     //Adiciona um novo blooco vazio
+     const handleNewServer = () => {
+        setAddServers((oldServer) => [...oldServer, Date.now()]);
+      }
   
   return (
         <>
           {/* //recebe as funções de adicionar e remover como props */}
           <NavBar onAddServer={handleNewServer} onRemoveApp={handleRemoveApp} onAddApp={handleAddApp} apps={apps}/> 
           {/* // Recebe uma lista de props e renderiza  */}
-          <Dashboard pad={apps}/>
+          <Dashboard pad={apps} addServers={addServers}/>
         </>
   )
 }

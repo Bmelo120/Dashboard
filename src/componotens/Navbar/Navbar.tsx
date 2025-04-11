@@ -13,7 +13,6 @@ interface Navbarprops {
     onRemoveApp: (id: string) => void;
     onAddServer: () => void;
     apps: ClusterApp[];
-    newServer: number[];
 }
 
 //Lista fix de aplicativos 
@@ -81,13 +80,10 @@ const NavBar: React.FC<Navbarprops> = ({ onAddApp, onRemoveApp, onAddServer ,app
     return(
         <Container>
             <Grid container spacing={2} columns={8} alignItems="center">
-                <Grid size={4}>
+                <Grid size={4}>                   
                     <IconWrapper>
-                        <AddCircleOutlineIcon />
-                        <MenuItem 
-                            style={{ marginLeft: "1em"}}
-                            onClick={onAddServer}    
-                        > Novo Servidor </MenuItem>
+                        <AddCircleOutlineIcon  onClick={() => onAddServer()}  />                     
+                        <MenuItem style={{ marginLeft: "1em"}}> Novo Servidor </MenuItem>
                     </IconWrapper>
                 </Grid>
                 <Grid size={4}>
