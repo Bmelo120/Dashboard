@@ -43,8 +43,14 @@ const Dashboard: React.FC<DashboardProps> = ({ pad, addServers}) => {
             {pad.map((server, index) => (
               <Grid key={index} size={{ xs: 2, sm: 4, md: 4 }}>
                 <Blocks style={{ borderTop: `4px solid ${server.color}` }}>
-                  <strong style={{ color: "#ffff", display: "flex", padding: "2em", justifyContent:"center" }}>{server.name}</strong>
-                  <span style={{ color: "black", display: "flex", padding: "1em", justifyContent: "center", fontSize: "12px"  }}>{formatTime(server.createdAt)}</span>
+                  <strong 
+                    style={{ color: "#ffff", display: "flex", padding: "2em", justifyContent:"center" }}>
+                      {server.name}
+                  </strong>
+                  <span 
+                    style={{ color: "black", display: "flex", padding: "1em", justifyContent: "center", fontSize: "12px"  }}>
+                      {formatTime(server.createdAt)}
+                  </span>
                 </Blocks>
               </Grid>
               ))}

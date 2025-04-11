@@ -12,6 +12,7 @@ interface Navbarprops {
     onAddApp: (id: string, name: string, color: string) => void;
     onRemoveApp: (id: string) => void;
     onAddServer: () => void;
+    onRemoveServer: () => void;
     apps: ClusterApp[];
 }
 
@@ -24,7 +25,7 @@ const arrayApps = [
     { id: "5", name: "Spark", color: "#8bc34a" },
   ]
 
-const NavBar: React.FC<Navbarprops> = ({ onAddApp, onRemoveApp, onAddServer ,apps }) => {
+const NavBar: React.FC<Navbarprops> = ({ onAddApp, onRemoveApp, onAddServer, onRemoveServer ,apps }) => {
 
     const IconWrapper = styled.div(() => ({
         display: "flex",
@@ -88,7 +89,7 @@ const NavBar: React.FC<Navbarprops> = ({ onAddApp, onRemoveApp, onAddServer ,app
                 </Grid>
                 <Grid size={4}>
                     <IconWrapper>
-                        <RemoveCircleOutlineIcon/>
+                        <RemoveCircleOutlineIcon onClick={() => onRemoveServer()}/>
                         < MenuItem> Destruir </MenuItem>
                     </IconWrapper>
                 </Grid>

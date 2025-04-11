@@ -63,11 +63,31 @@ function App() {
      const handleNewServer = () => {
         setAddServers((oldServer) => [...oldServer, Date.now()]);
       }
+
+      //Remove blocos vazios 
+      const handleRemoveServer = () => {
+        //verifica se tem um servidor vazio
+        if (addServers.length === 0) {
+          alert("Não há servidores vazios disponíveis!");
+          return;
+        } 
+
+          const updatedServers = [...addServers];
+          updatedServers.splice(0, 1); // remove só a primeira ocorrência
+          setAddServers(updatedServers); 
+      }
+
+
   
   return (
         <>
           {/* //recebe as funções de adicionar e remover como props */}
-          <NavBar onAddServer={handleNewServer} onRemoveApp={handleRemoveApp} onAddApp={handleAddApp} apps={apps}/> 
+          <NavBar 
+            onAddServer={handleNewServer} 
+            onRemoveServer={handleRemoveServer}
+            onRemoveApp={handleRemoveApp} 
+            onAddApp={handleAddApp} 
+            apps={apps}/> 
           {/* // Recebe uma lista de props e renderiza  */}
           <Dashboard pad={apps} addServers={addServers}/>
         </>
