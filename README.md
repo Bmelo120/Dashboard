@@ -47,7 +47,7 @@ Este componente exibe visualmente os servidores ativos.
 
 - Uma função "formatTime" que calcula quantos minutos se passaram desde que o app foi criado.
 
-- Utiliza Grid do Material UI para montar uma grande de servidores, a lista de servidores (pad) é pecorridado com map para renderizar um bloco com a cor da borda de acordo com o aplicativo, mostra o nome do aplicativoe há quanto tempo ele foi adicionado. 
+- Utiliza Grid do Material UI para montar uma grande de servidores, a lista de servidores (pad) é pecorridado com map para renderizar um bloco com a cor da borda de acordo com o aplicativo, mostra o nome do aplicativo e há quanto tempo ele foi adicionado. 
 
 - O array "addSerbers" é pecorrido com map para renderizar um bloco vazio.
 
