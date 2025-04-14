@@ -1,21 +1,26 @@
 #Dashboard
 
 O Dashboard simula uma interface de um servidor no cluster. 
-Feito em React.js, com a utilização de styled-components, Material UI, hooks.
+Feito em React.js, com a utilização :
+
+- Styled-components para estilização
+- Material UI para componentes e icones prontos 
+- Hooks do React para controle de estado "useState"
 
 #Como rodar?
 
-Acessar a pasta
+Acessar a pasta do projeto:
 
 cd dashboard
 
-Rodar 
+Execute o projeto com: 
 
 npm run dev 
 
 ou 
 
-Acessar o link (Subi para o git apenas para subir no varcel mas está privado)
+Obs: O projeto também está disponível no Vercel. O repositório está privado e foi utilizado apenas para deploy
+- 
 
 
 #src/App.tsx
