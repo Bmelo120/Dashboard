@@ -16,7 +16,7 @@ interface Navbarprops {
     apps: ClusterApp[];
 }
 
-//Lista fix de aplicativos 
+//Lista de aplicativos 
 const arrayApps = [
     { id: "1", name: "Hadoop", color: "#f50057" },
     { id: "2", name: "Rails", color: "#3f51b5" },
