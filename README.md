@@ -13,7 +13,7 @@ Feito em React.js, com a utilização :
 Componente principal da aplicação.
 Utiliza hooks para controle de estado e funções responsáveis  para alterá-lo, dentro desse componente estação definidas as seguintes funções: criar um novo cluter dentro do bloco, remover um cluster de bloco existente, adiciona um bloco vazio e remove blocos vazios e a renderização dos componentes. 
 
-# #src/componentes/Navbar/Navbar.tsx
+## #src/componentes/Navbar/Navbar.tsx
 
 Este componente é a barra lateral da aplicação, responsável por gerenciar servidores e aplicativos.
 
