@@ -7,10 +7,6 @@ Feito em React.js, com a utilização :
 - Material UI para componentes e icones prontos 
 - Hooks do React para controle de estado "useState"
 
-#Como rodar?
-
-Acessar a pasta do projeto:
-
 
 ## src/App.tsx
 
