@@ -1,4 +1,4 @@
-#Dashboard
+#  Dashboard
 
 O Dashboard simula uma interface de um servidor no cluster. 
 Feito em React.js, com a utilização :
@@ -11,24 +11,13 @@ Feito em React.js, com a utilização :
 
 Acessar a pasta do projeto:
 
-cd dashboard
 
-Execute o projeto com: 
-
-npm run dev 
-
-ou 
-
-Obs: O projeto também está disponível no Vercel. O repositório está privado e foi utilizado apenas para deploy
-- 
-
-
-#src/App.tsx
+## src/App.tsx
 
 Componente principal da aplicação.
 Utiliza hooks para controle de estado e funções responsáveis  para alterá-lo, dentro desse componente estação definidas as seguintes funções: criar um novo cluter dentro do bloco, remover um cluster de bloco existente, adiciona um bloco vazio e remove blocos vazios e a renderização dos componentes. 
 
-#src/componentes/Navbar/Navbar.tsx
+# #src/componentes/Navbar/Navbar.tsx
 
 Este componente é a barra lateral da aplicação, responsável por gerenciar servidores e aplicativos.
 
@@ -39,7 +28,7 @@ Ele contém:
  
  Utiliza o Grid do Material UI para organizar o laytou dos clusters. Dentro de AppContent, a lista de aplicativos é percorrida com map para renderizar cada aplicativo com sua cor e nome pré-definida e utiliza o id para a quantidade de clusters ativos. Além disso, o ícone AddCircleIcon possui uma logica que limita a adição de no máximo duas instância por aplicativo.
 
- #src/componentes/Dashboard/Dashboard.tsx
+## src/componentes/Dashboard/Dashboard.tsx
 
 Este componente exibe visualmente os servidores ativos.
 
