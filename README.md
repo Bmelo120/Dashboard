@@ -30,8 +30,9 @@ Ele contém:
  - Uma lista de aplicativos disponiveis
  - Dois icones que cria e remove um novo servidor
  - Uma função "countCluste" definida para contagem dos clustes. 
- 
-Utiliza o Grid do Material UI para organizar o laytou dos clusters. Dentro de AppContent, a lista de aplicativos é percorrida com map para renderizar cada aplicativo com sua cor e nome pré-definida e utiliza o id para a quantidade de clusters ativos. Além disso, o ícone AddCircleIcon possui uma logica que limita a adição de no máximo duas instância por aplicativo.
+
+- Renderização: 
+   - Utiliza o Grid do Material UI para organizar o laytou dos clusters. Dentro de AppContent, a lista de aplicativos é percorrida com map para renderizar cada aplicativo com sua cor e nome pré-definida e utiliza o id para a quantidade de clusters ativos. Além disso, o ícone AddCircleIcon possui uma logica que limita a adição de no máximo duas instância por aplicativo.
 
 ## src/componentes/Dashboard/Dashboard.tsx
 
