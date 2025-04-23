@@ -23,7 +23,7 @@ function App() {
     const savedApps = localStorage.getItem('apps');
     const savedAddServers = localStorage.getItem('addServers');
 
-    if (savedApps && savedApps !== "undefined") {
+    if (savedApps) {
       const parsedApps: ClusterApp[] = JSON.parse(savedApps).map((app: ClusterApp) => ({
         ...app,
         createdAt: new Date(app.createdAt)
@@ -31,7 +31,7 @@ function App() {
       setApps(parsedApps);
     }
 
-    if (savedAddServers && savedAddServers !== "undefined") {
+    if (savedAddServers) {
       const parsedServers: number[] = JSON.parse(savedAddServers);
       setAddServers(parsedServers);
     } else if (!savedAddServers && savedApps) {
