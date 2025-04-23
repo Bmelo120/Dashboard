@@ -29,21 +29,9 @@ Este componente é a barra lateral da aplicação, responsável por gerenciar se
 Ele contém:
  - Uma lista de aplicativos disponiveis
  - Dois icones que cria e remove um novo servidor
-
  - Uma função "countCluste" definida para contagem dos clustes. 
-
- OBS: Ao atualizar a página, os blocos de servidores são resetados.
-    Para visualizar o tempo de criação de cada cluster:
-
-        Adicione um novo aplicativo (App) — ele será exibido no painel com o tempo "Added just now".
-
-        Aguarde alguns minutos.
-
-        Adicione outro aplicativo — o tempo de criação do primeiro será atualizado, e você poderá comparar.
-
-        Isso ocorre porque o tempo é calculado dinamicamente com base na data de criação em tempo real (createdAt) e não é persistido após o reload da página.
  
- Utiliza o Grid do Material UI para organizar o laytou dos clusters. Dentro de AppContent, a lista de aplicativos é percorrida com map para renderizar cada aplicativo com sua cor e nome pré-definida e utiliza o id para a quantidade de clusters ativos. Além disso, o ícone AddCircleIcon possui uma logica que limita a adição de no máximo duas instância por aplicativo.
+Utiliza o Grid do Material UI para organizar o laytou dos clusters. Dentro de AppContent, a lista de aplicativos é percorrida com map para renderizar cada aplicativo com sua cor e nome pré-definida e utiliza o id para a quantidade de clusters ativos. Além disso, o ícone AddCircleIcon possui uma logica que limita a adição de no máximo duas instância por aplicativo.
 
 ## src/componentes/Dashboard/Dashboard.tsx
 
