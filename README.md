@@ -1,22 +1,23 @@
 #  Dashboard
 
 O Dashboard simula uma interface de um servidor no cluster. 
-Feito em React.js, com a utilização :
-
-- Styled-components para estilização
-- Material UI para componentes e icones prontos 
-- Hooks do React para controle de estado "useState"
+🔧 Tecnologias utilizadas:
+✔️ React.js
+✔️ TypeScript 
+✔️ Vite
+✔️ Styled-components e Material UI para estilização.
+✔️ Hooks do React para controle de estado.
 
 
 ## App.tsx
 
 Componente principal da aplicação. O comportamento da aplicação envolve a manipulação dinâmica de "clusters" e "blocos", além de persistir as alterações no localStorage para garantir a persistência de dados mesmo após o recarregamento da página. Funções principais dentro do componente:  
 
-• "useEffect" - Recupera dados do localStorage ao carregar o componente. Isso inclui os aplicativos e blocos vazios (se houver) salvos anteriormente.
-• "handleAddApp" - Cria um novo cluter dentro do bloco
-• "handleRemoveApp" - Remove um cluster de bloco existente
-• "handleNewServer" - Adiciona um bloco vazio 
-• "handleRemoveServer" - Remove blocos vazios 
+- "useEffect" - Recupera dados do localStorage ao carregar o componente. Isso inclui os aplicativos e blocos vazios (se houver) salvos anteriormente.
+- "handleAddApp" - Cria um novo cluter dentro do bloco
+- "handleRemoveApp" - Remove um cluster de bloco existente
+- "handleNewServer" - Adiciona um bloco vazio 
+- "handleRemoveServer" - Remove blocos vazios 
 
 
 
