@@ -20,40 +20,46 @@ function App() {
 
    // Recupera os dados do localStorage ao carregar
    useEffect(() => {
-    const savedApps = localStorage.getItem('apps');
-    const savedAddServers = localStorage.getItem('addServers');
-
-    if (savedApps) {
-      const parsedApps: ClusterApp[] = JSON.parse(savedApps).map((app: ClusterApp) => ({
-        ...app,
-        createdAt: new Date(app.createdAt)
-      }));
-      setApps(parsedApps);
-    }
-
-    if (savedAddServers) {
-      const parsedServers: number[] = JSON.parse(savedAddServers);
-      setAddServers(parsedServers);
-    } else if (!savedAddServers && savedApps) {
-      // Se só apps foram salvos, calcula blocos restantes
-      const parsedApps = JSON.parse(savedApps);
-      const totalBlocks = 4;
-      const remaining = totalBlocks - parsedApps.length;
-      if (remaining > 0) {
-        const newServers = Array.from({ length: remaining }, () => Date.now() + Math.random());
-        setAddServers(newServers);
-        localStorage.setItem('addServers', JSON.stringify(newServers));
+    try {
+      const savedApps = localStorage.getItem('apps');
+      const savedAddServers = localStorage.getItem('addServers');
+  
+      if (savedApps) {
+        const parsedApps: ClusterApp[] = JSON.parse(savedApps).map((app: ClusterApp) => ({
+          ...app,
+          createdAt: new Date(app.createdAt)
+        }));
+        setApps(parsedApps);
       }
-    } else if (!savedApps && !savedAddServers) {
-      // Primeiro acesso, define 4 blocos vazios
-      const initialServers = [
-        Date.now(),
-        Date.now() + 1,
-        Date.now() + 2,
-        Date.now() + 3
-      ];
-      setAddServers(initialServers);
-      localStorage.setItem('addServers', JSON.stringify(initialServers));
+  
+      if (savedAddServers) {
+        const parsedServers: number[] = JSON.parse(savedAddServers);
+        setAddServers(parsedServers);
+      } else if (!savedAddServers && savedApps) {
+        // Se só apps foram salvos, calcula blocos restantes
+        const parsedApps = JSON.parse(savedApps);
+        const totalBlocks = 4;
+        const remaining = totalBlocks - parsedApps.length;
+        if (remaining > 0) {
+          const newServers = Array.from({ length: remaining }, () => Date.now() + Math.random());
+          setAddServers(newServers);
+          localStorage.setItem('addServers', JSON.stringify(newServers));
+        }
+      } else if (!savedApps && !savedAddServers) {
+        // Primeiro acesso, define 4 blocos vazios
+        const initialServers = [
+          Date.now(),
+          Date.now() + 1,
+          Date.now() + 2,
+          Date.now() + 3
+        ];
+        setAddServers(initialServers);
+        localStorage.setItem('addServers', JSON.stringify(initialServers));
+      }
+    } catch (error) {
+      console.error("Erro ao carregar dados do localStorage:", error);
+      localStorage.removeItem('apps');
+      localStorage.removeItem('addServers');
     }
   }, []);
 
