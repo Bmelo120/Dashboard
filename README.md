@@ -35,13 +35,13 @@ Utiliza o Grid do Material UI para organizar o laytou dos clusters. Dentro de Ap
 
 ## src/componentes/Dashboard/Dashboard.tsx
 
-Este componente exibe visualmente os servidores ativos.
+Este componente exibe visualmente os servidores ativos e os blocos vazios na interface.
 
-- É utilizada uma interface para receber Props: "pad" uma lista de servidores ativos onde cada item é um aplicativo com, nome, cor e data de criação e "addServers" um array numerico apenas para controle e renderização de blocos vazios. 
-
+- Props recebida:
+    - "pad" -> array de objetos representando os aplicativos ativos. Cada item possui as seguintes propriedades: nome, cor e data de criação.
+- "addServers" um array numerico apenas para controle e renderização de blocos vazios. 
 - Uma função "formatTime" que calcula quantos minutos se passaram desde que o app foi criado.
-
-- Utiliza Grid do Material UI para montar uma grande de servidores, a lista de servidores (pad) é pecorridado com map para renderizar um bloco com a cor da borda de acordo com o aplicativo, mostra o nome do aplicativo e há quanto tempo ele foi adicionado. 
-
-- O array "addSerbers" é pecorrido com map para renderizar um bloco vazio.
+- Renderização:
+    - Utiliza Grid do Material UI para montar uma grande de servidores, a lista de servidores (pad) é pecorridado com map para renderizar um bloco com a cor da borda de acordo com o aplicativo, mostra o nome do aplicativo e há quanto tempo ele foi adicionado. 
+   - O array "addSerbers" é pecorrido com map para renderizar um bloco vazio.
 
