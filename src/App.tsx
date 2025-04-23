@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App'
 import Dashboard from './componotens/Dashboard/Dashboard'
 import NavBar from './componotens/Navbar/Navbar'
@@ -16,12 +16,46 @@ function App() {
   const [ apps, setApps ] = useState<ClusterApp[]>([]);
 
   //controla o estado do bloco vazio
-  const [addServers, setAddServers] = useState<(number[])>([
-  Date.now(),
-  Date.now() + 1,
-  Date.now() + 2,
-  Date.now() + 3,
-  ]);
+  const [addServers, setAddServers] = useState<(number[])>([]);
+
+   // Recupera os dados do localStorage ao carregar
+   useEffect(() => {
+    const savedApps = localStorage.getItem('apps');
+    const savedAddServers = localStorage.getItem('addServers');
+
+    if (savedApps) {
+      const parsedApps: ClusterApp[] = JSON.parse(savedApps).map((app: ClusterApp) => ({
+        ...app,
+        createdAt: new Date(app.createdAt)
+      }));
+      setApps(parsedApps);
+    }
+
+    if (savedAddServers) {
+      const parsedServers: number[] = JSON.parse(savedAddServers);
+      setAddServers(parsedServers);
+    } else if (!savedAddServers && savedApps) {
+      // Se só apps foram salvos, calcula blocos restantes
+      const parsedApps = JSON.parse(savedApps);
+      const totalBlocks = 4;
+      const remaining = totalBlocks - parsedApps.length;
+      if (remaining > 0) {
+        const newServers = Array.from({ length: remaining }, () => Date.now() + Math.random());
+        setAddServers(newServers);
+        localStorage.setItem('addServers', JSON.stringify(newServers));
+      }
+    } else if (!savedApps && !savedAddServers) {
+      // Primeiro acesso, define 4 blocos vazios
+      const initialServers = [
+        Date.now(),
+        Date.now() + 1,
+        Date.now() + 2,
+        Date.now() + 3
+      ];
+      setAddServers(initialServers);
+      localStorage.setItem('addServers', JSON.stringify(initialServers));
+    }
+  }, []);
 
   //Cria um novo cluster dentro do  bloco . 
   const handleAddApp = (id: string, name: string, color: string) => {
@@ -43,10 +77,13 @@ function App() {
        //remove o vazio
        const updated = [...addServers];
        updated.splice(0, 1);
-        setAddServers(updated);
+       const updatedApps = [...apps, newApp];
 
-       //adiciona um novo app 
-       setApps([...apps, newApp])
+       setApps(updatedApps);
+       setAddServers(updated);
+   
+       localStorage.setItem('apps', JSON.stringify(updatedApps));
+       localStorage.setItem('addServers', JSON.stringify(updated));
   };
 
   //Remove um cluster com o id informado na lista (ou seja de acordo com o app selecionado)
@@ -55,13 +92,21 @@ function App() {
     if (index !== -1) {
       const updatedApps = [...apps];
       updatedApps.splice(index, 1); // remove só a primeira ocorrência
+
+      const updatedAddServers = [...addServers, Date.now()];
+
       setApps(updatedApps);
+      setAddServers(updatedAddServers);
+
+      localStorage.setItem('apps', JSON.stringify(updatedApps));
+      localStorage.setItem('addServers', JSON.stringify(updatedAddServers));
     }
   };
 
      //Adiciona um novo blooco vazio
      const handleNewServer = () => {
         setAddServers((oldServer) => [...oldServer, Date.now()]);
+        localStorage.setItem('addServers', JSON.stringify(setAddServers));
       }
 
       //Remove blocos vazios 
@@ -75,6 +120,7 @@ function App() {
           const updatedServers = [...addServers];
           updatedServers.splice(0, 1); // remove só a primeira ocorrência
           setAddServers(updatedServers); 
+          localStorage.setItem('addServers', JSON.stringify(updatedServers));
       }
 
 
