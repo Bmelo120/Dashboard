@@ -1,12 +1,13 @@
 #  Dashboard
 
 O Dashboard simula uma interface de um servidor no cluster. 
+
 🔧 Tecnologias utilizadas:
-✔️ React.js
-✔️ TypeScript 
-✔️ Vite
-✔️ Styled-components e Material UI para estilização.
-✔️ Hooks do React para controle de estado.
+✔ React.js
+✔ TypeScript 
+✔ Vite
+✔ Styled-components e Material UI para estilização.
+✔ Hooks do React para controle de estado.
 
 
 ## App.tsx
