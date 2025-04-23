@@ -20,9 +20,7 @@ Componente principal da aplicação. O comportamento da aplicação envolve a ma
 - "handleNewServer" - Adiciona um bloco vazio 
 - "handleRemoveServer" - Remove blocos vazios 
 
-
-
-## #src/componentes/Navbar/Navbar.tsx
+## Navbar.tsx
 
 Este componente é a barra lateral da aplicação, responsável por gerenciar servidores e aplicativos.
 
@@ -34,7 +32,7 @@ Ele contém:
 - Renderização: 
    - Utiliza o Grid do Material UI para organizar o laytou dos clusters. Dentro de AppContent, a lista de aplicativos é percorrida com map para renderizar cada aplicativo com sua cor e nome pré-definida e utiliza o id para a quantidade de clusters ativos. Além disso, o ícone AddCircleIcon possui uma logica que limita a adição de no máximo duas instância por aplicativo.
 
-## src/componentes/Dashboard/Dashboard.tsx
+## Dashboard.tsx
 
 Este componente exibe visualmente os servidores ativos e os blocos vazios na interface.
 
