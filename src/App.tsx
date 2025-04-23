@@ -111,8 +111,9 @@ function App() {
 
      //Adiciona um novo blooco vazio
      const handleNewServer = () => {
-        setAddServers((oldServer) => [...oldServer, Date.now()]);
-        localStorage.setItem('addServers', JSON.stringify(setAddServers));
+      const updatedServers = [...addServers, Date.now()];
+      setAddServers(updatedServers);
+      localStorage.setItem('addServers', JSON.stringify(updatedServers));
       }
 
       //Remove blocos vazios 
