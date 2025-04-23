@@ -8,10 +8,17 @@ Feito em React.js, com a utilização :
 - Hooks do React para controle de estado "useState"
 
 
-## src/App.tsx
+## App.tsx
 
-Componente principal da aplicação.
-Utiliza hooks para controle de estado e funções responsáveis  para alterá-lo, dentro desse componente estação definidas as seguintes funções: criar um novo cluter dentro do bloco, remover um cluster de bloco existente, adiciona um bloco vazio e remove blocos vazios e a renderização dos componentes. 
+Componente principal da aplicação. O comportamento da aplicação envolve a manipulação dinâmica de "clusters" e "blocos", além de persistir as alterações no localStorage para garantir a persistência de dados mesmo após o recarregamento da página. Funções principais dentro do componente:  
+
+• "useEffect" - Recupera dados do localStorage ao carregar o componente. Isso inclui os aplicativos e blocos vazios (se houver) salvos anteriormente.
+• "handleAddApp" - Cria um novo cluter dentro do bloco
+• "handleRemoveApp" - Remove um cluster de bloco existente
+• "handleNewServer" - Adiciona um bloco vazio 
+• "handleRemoveServer" - Remove blocos vazios 
+
+
 
 ## #src/componentes/Navbar/Navbar.tsx
 
