@@ -24,26 +24,16 @@ function App() {
     const savedAddServers = localStorage.getItem('addServers');
 
     if (savedApps && savedApps !== "undefined") {
-      try {
-        const parsedApps: ClusterApp[] = JSON.parse(savedApps).map((app: ClusterApp) => ({
-          ...app,
-          createdAt: new Date(app.createdAt)
-        }));
-        setApps(parsedApps);
-      } catch (e) {
-        console.error("Erro ao fazer parse dos apps:", e);
-        localStorage.removeItem('apps'); // evita que corrompa novamente
-      }
+      const parsedApps: ClusterApp[] = JSON.parse(savedApps).map((app: ClusterApp) => ({
+        ...app,
+        createdAt: new Date(app.createdAt)
+      }));
+      setApps(parsedApps);
     }
 
     if (savedAddServers && savedAddServers !== "undefined") {
-      try {
-        const parsedServers: number[] = JSON.parse(savedAddServers);
-        setAddServers(parsedServers);
-      } catch (e) {
-        console.error("Erro ao fazer parse dos servidores:", e);
-        localStorage.removeItem('addServers');
-      }
+      const parsedServers: number[] = JSON.parse(savedAddServers);
+      setAddServers(parsedServers);
     } else if (!savedAddServers && savedApps) {
       // Se só apps foram salvos, calcula blocos restantes
       const parsedApps = JSON.parse(savedApps);
